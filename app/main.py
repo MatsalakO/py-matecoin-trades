@@ -9,14 +9,13 @@ def calculate_profit(json_file_name: str) -> None:
         result = {"earned_money": 0, "matecoin_account": 0}
 
         for data_coin in data_coins:
+            dec_matecoin = decimal.Decimal(data_coin["matecoin_price"])
             if data_coin["bought"]:
                 dec_bought = decimal.Decimal(data_coin["bought"])
-                dec_matecoin = decimal.Decimal(data_coin["matecoin_price"])
                 result["earned_money"] -= dec_bought * dec_matecoin
                 result["matecoin_account"] += dec_bought
             if data_coin["sold"]:
                 dec_sold = decimal.Decimal(data_coin["sold"])
-                dec_matecoin = decimal.Decimal(data_coin["matecoin_price"])
                 result["earned_money"] += dec_sold * dec_matecoin
                 result["matecoin_account"] -= dec_sold
 
